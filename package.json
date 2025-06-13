@@ -8,11 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish --windows --linux"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/theCowBoiCoder/toga-motorsport-app.git"
+    "url": "https://github.com/theCowBoiCoder/toga-motorsport-app"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +33,7 @@
     "electron": "^36.4.0"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "update-electron-app": "^3.1.1"
   }
 }
