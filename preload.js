@@ -14,3 +14,5 @@ contextBridge.exposeInMainWorld('discord', {
   logout: () => ipcRenderer.invoke('discord:logout'),
   getUser: () => ipcRenderer.invoke('discord:get-user')
 });
+
+

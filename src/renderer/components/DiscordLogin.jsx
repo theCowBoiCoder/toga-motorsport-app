@@ -21,7 +21,7 @@ function DiscordLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-8 text-center">
+    <div className="bg-white rounded-lg shadow-md p-8 text-center font-montserrat">
       <h2 className="text-2xl font-semibold mb-6">Login Required</h2>
       <p className="text-gray-600 mb-6">
         Please login with Discord to access the application.

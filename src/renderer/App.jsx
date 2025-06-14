@@ -12,6 +12,7 @@ function App() {
   const checkAuthStatus = async () => {
     try {
       const result = await window.discord.getUser();
+
       if (result.success && result.user) {
         setUser(result.user);
         setIsLoggedIn(true);
@@ -37,14 +38,14 @@ function App() {
       console.error('Logout failed:', error);
     }
   };
+  console.log('User:', user);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-black p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-blue-600 mb-8">
-          Toga Motorsport App
-        </h1>
-        
+        <h1 className="uppercase text-center text-4xl font-bold text-orange mb-8 font-montserrat">
+        Toga Motorsport App</h1>
+      
         {isLoggedIn ? (
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2>

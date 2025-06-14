@@ -1,3 +1,4 @@
+
 function displayUserInfo(user) {
   const userAvatar = document.getElementById('user-avatar');
   const userName = document.getElementById('user-name');
