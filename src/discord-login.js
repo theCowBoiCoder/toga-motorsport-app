@@ -45,7 +45,7 @@ async function login() {
       });
       
       server.listen(port, 'localhost', () => {
-        console.log(`Server listening on port ${port}`);
+        
         resolve();
       });
     });
@@ -155,7 +155,7 @@ async function login() {
       }),
       'utf8'
     );
-    console.log('Auth tokens saved successfully');
+
   } catch (err) {
     console.error('Failed to write auth tokens file:', err);
   }
@@ -273,7 +273,6 @@ async function getCurrentUser() {
     const tokensPath = path.join(__dirname, '..', '.user-data', 'auth-tokens.json');
     
     if (fs.existsSync(tokensPath)) {
-      console.log('Auth tokens file found, reading user data...');
       const tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
       
       if (tokens.discordTokens && tokens.discordTokens.access_token) {

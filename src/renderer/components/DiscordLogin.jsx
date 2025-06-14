@@ -21,15 +21,15 @@ function DiscordLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-8 text-center font-montserrat">
-      <h2 className="text-2xl font-semibold mb-6">Login Required</h2>
-      <p className="text-gray-600 mb-6">
+    <div className="bg-gray-900 rounded-lg shadow-md p-8 text-center font-montserrat">
+      <h2 className="text-2xl font-semibold mb-6 text-white uppercase">Login Required</h2>
+      <p className="text-orange mb-6">
         Please login with Discord to access the application.
       </p>
       <button
         onClick={handleLogin}
         disabled={isLoading}
-        className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 disabled:opacity-50"
+        className="bg-orange font-medium text-white px-6 py-3 rounded-lg hover:bg-white hover:text-orange disabled:opacity-50"
       >
         {isLoading ? 'Logging in...' : 'Login with Discord'}
       </button>

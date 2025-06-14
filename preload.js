@@ -15,4 +15,8 @@ contextBridge.exposeInMainWorld('discord', {
   getUser: () => ipcRenderer.invoke('discord:get-user')
 });
 
+contextBridge.exposeInMainWorld('app', {
+  getVersion: () => ipcRenderer.invoke('app:get-version')
+});
+
 

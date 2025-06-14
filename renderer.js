@@ -16,7 +16,7 @@ function displayUserInfo(user) {
 async function checkAuthStatus() {
   try {
     const userResult = await window.discord.getUser();
-    console.log('Auth status:', userResult);
+  
     
     if (userResult.success && userResult.user) {
       // User is logged in
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       try {
         const result = await window.discord.login();
-        console.log('Login result:', result);
+        
         
         if (result.success) {
           displayUserInfo(result.user);

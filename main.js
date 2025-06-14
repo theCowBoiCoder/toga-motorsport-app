@@ -30,6 +30,10 @@ ipcMain.handle('discord:get-user', () => {
   return discordLogin.getCurrentUser();
 });
 
+ipcMain.handle('app:get-version', () => {
+  return app.getVersion();
+});
+
 app.whenReady().then(() => {
   ipcMain.handle('ping', () => 'pong')
   createWindow()
