@@ -10,6 +10,21 @@
 <body class="bg-gray-100 p-8">
   <h1 class="text-3xl font-bold text-blue-600">Hello World!</h1>
   <p class="mt-4 text-gray-700">Welcome to your Electron application.</p>
+
+  <button id="discord-login-button">
+  Login with Discord
+</button>
+
+<!-- User profile section will be populated after login -->
+<div id="user-profile" style="display: none;">
+  <img id="user-avatar" src="" alt="Avatar">
+  <h3 id="user-name"></h3>
+  <p id="user-email"></p>
+</div>
+
+<button id="discord-logout-button" class="logout-btn">
+    Logout from Discord
+  </button>
   
   <script src="./renderer.js"></script>
 </body>

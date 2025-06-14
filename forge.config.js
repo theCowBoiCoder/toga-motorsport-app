@@ -10,7 +10,9 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        name: 'toga-motorsport-app'
+        name: 'toga-motorsport-app',
+        authors: 'Hayden Sweet',
+        setupExe: 'TogaMotorsportAppSetup.exe',
       },
       platforms: ['win32']
     },
