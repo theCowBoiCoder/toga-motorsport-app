@@ -3,29 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Toga Motorsport App</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline';">
   <link href="./dist/style.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 p-8">
-  <h1 class="text-3xl font-bold text-blue-600">Hello World!</h1>
-  <p class="mt-4 text-gray-700">Welcome to your Electron application.</p>
-
-  <button id="discord-login-button">
-  Login with Discord
-</button>
-
-<!-- User profile section will be populated after login -->
-<div id="user-profile" style="display: none;">
-  <img id="user-avatar" src="" alt="Avatar">
-  <h3 id="user-name"></h3>
-  <p id="user-email"></p>
-</div>
-
-<button id="discord-logout-button" class="logout-btn">
-    Logout from Discord
-  </button>
-  
-  <script src="./renderer.js"></script>
+<body class="font-montserrat">
+  <div id="root"></div>
+  <script src="./dist/renderer.js"></script>
 </body>
 </html>

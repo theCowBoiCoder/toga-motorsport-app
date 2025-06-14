@@ -87,7 +87,7 @@ async function login() {
     });
     
     // Discord OAuth URL
-    const authUrl = `https://discord.com/oauth2/authorize?client_id=1091322288017784852&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fauth%2Fdiscord&scope=identify+guilds`;
+    const authUrl = `https://discord.com/oauth2/authorize?client_id=1091322288017784852&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:8080%2Fauth%2Fdiscord&scope=identify+guilds`;
     
     // Open URL in default browser
     shell.openExternal(authUrl);
@@ -223,38 +223,69 @@ async function logout() {
   }
 }
 
+async function getUserFromToken(accessToken) {
+  try {
+    const response = await fetch('https://discord.com/api/users/@me', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
+    
+    if (response.ok) {
+      const user = await response.json();
+      return { success: true, user };
+    } else {
+      return { success: false, error: 'Token expired' };
+    }
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
+async function getUserFromLaravel(laravelToken) {
+  try {
+    const config = loadConfig();
+    const apiUrl = config.discord.apiUrl || 'http://togamotorsport.local/api';
+    
+    const response = await fetch(`${apiUrl}/user`, {
+      headers: {
+        'Authorization': `Bearer ${laravelToken}`,
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      const userData = await response.json();
+      return { success: true, user: userData };
+    } else {
+      return { success: false, error: 'Laravel token expired' };
+    }
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
 /**
  * Get current user data from Laravel
  */
 async function getCurrentUser() {
   try {
-    const config = loadConfig();
-    const apiUrl = config.discord.apiUrl || 'https://your-laravel-website.com/api';
-    
-    // Check if we have a token
     const tokensPath = path.join(__dirname, '..', '.user-data', 'auth-tokens.json');
     
-    // File doesn't exist yet - user hasn't logged in
-    if (!fs.existsSync(tokensPath)) {
-      console.log('No auth tokens file found - user is not logged in');
-      return { success: false, error: 'Not logged in' };
+    if (fs.existsSync(tokensPath)) {
+      console.log('Auth tokens file found, reading user data...');
+      const tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
+      
+      if (tokens.discordTokens && tokens.discordTokens.access_token) {
+        // Await the async function
+        return await getUserFromToken(tokens.discordTokens.access_token);
+      }
     }
     
-    // Read stored tokens
-    const storedTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
-    
-    if (!storedTokens || !storedTokens.laravelToken) {
-      console.log('No Laravel token found in auth tokens file');
-      return { success: false, error: 'Not logged in' };
-    }
-    
-    // Rest of your function...
+    return { success: false, error: 'No valid authentication found' };
   } catch (error) {
-    console.error('Get user error:', error);
-    return {
-      success: false,
-      error: error.message
-    };
+    console.error('Error reading auth tokens:', error);
+    return { success: false, error: 'Failed to read authentication' };
   }
 }
 
