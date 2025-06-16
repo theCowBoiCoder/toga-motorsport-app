@@ -1,9 +1,0 @@
-{
-  "discord": {
-    "clientId": "1091322288017784852",
-    "clientSecret": "bvp5eL8Qo-9b50AXtCMVmqKSVI7xbXHO",
-    "redirectUri": "http://localhost:8080/auth/discord",
-    "port": 8080,
-    "apiUrl": "http://togamotorsport.local/api"
-  }
-}

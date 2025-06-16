@@ -1,3 +1,8 @@
 node_modules/*
 out/*
 package-lock.json
+dist/*
+.user-data/auth-token.json
+dist/
+
+*.json
